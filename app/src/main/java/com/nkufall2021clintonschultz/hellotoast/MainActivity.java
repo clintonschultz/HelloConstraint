@@ -4,6 +4,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorLong;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,16 +34,18 @@ public class MainActivity extends AppCompatActivity {
     public void resetZero(View view) {
         if (mShowCount != null)
             mShowCount.setText(Integer.toString(0));
-            Button zero_button = (Button)findViewById(R.id.button_zero);
+            final Button zero_button = (Button)findViewById(R.id.button_zero);
             zero_button.setBackgroundColor(Color.GRAY);
+            final Button countButton = (Button)findViewById(R.id.button_count);
+            countButton.setBackgroundColor(Color.rgb(98, 0,238));
             mCount = 0;
-            // change ZERO button back to GRAY - failed implementation
+            // change ZERO button back to GRAY
     }
 
     public void countUp(View view) {
 
-        Button zero_button = (Button)findViewById(R.id.button_zero);
-        zero_button.setBackgroundColor(-7829368);
+        final Button zero_button = (Button)findViewById(R.id.button_zero);
+        zero_button.setBackgroundColor(Color.MAGENTA);
         // change ZERO button color to PINK - failed implementation
 
         mCount++;
@@ -50,10 +53,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (mShowCount != null) mShowCount.setText(Integer.toString(mCount));
 
-        if (mCount / 2 == 0) {
-            view.setBackgroundColor(-65281);
+        if (mCount % 2 == 0) {
+            countButton.setBackgroundColor(Color.GREEN);
             // change COUNT button to GREEN if even - failed implementation
-        } else if (mCount / 2 != 0) {
+        }
+
+        if (mCount % 2 != 0) {
+            countButton.setBackgroundColor(Color.CYAN);
             // change COUNT button color to CYAN if odd
         }
     }
